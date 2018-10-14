@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@include file="./shared/theme.jsp"%>
 
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
@@ -22,13 +23,12 @@
 
 <title>Online Shopping - ${title}</title>
 
-
 <script type="text/javascript">
 	window.menu = '${title}';
 </script>
 
-<!-- Bootstrap core CSS -->
-<link href="${css}/themes/bootstrap.min.cerulean.css" rel="stylesheet">
+<!-- Bootstrap theme CSS -->
+<link href="${css}/themes/bootstrap.min.${theme}.css" rel="stylesheet"> 
 
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -42,6 +42,7 @@
 
 		<!-- Page Content -->
 		<div class="content">
+		
 			<!-- Loading the home content -->
 			<c:if test="${userClickHome==true}">
 				<%@include file="home.jsp"%>
@@ -56,6 +57,13 @@
 			<c:if test="${userClickContact==true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
+			
+			<!-- Loading the Category Products -->
+			<c:if test="${userClickCategoryProducts==true 
+				or userClickAllProducts==true}">
+				<%@include file="listproducts.jsp"%>
+			</c:if>
+			
 		</div>
 		
 		<!-- Footer -->
